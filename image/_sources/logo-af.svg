@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" role="img" aria-label="AF Prod">
+  <g transform="translate(14,0) skewX(-9)" fill-rule="evenodd">
+    <!-- A (bleu) -->
+    <path d="M20,162 L74,22 L96,22 L150,162 L122,162 L110,128 L58,128 L46,162 Z M85,58 L100,118 L70,118 Z"
+          fill="#1B4FD6"/>
+    <!-- F (blanc) -->
+    <path d="M150,22 L214,22 L214,45 L174,45 L174,80 L206,80 L206,103 L174,103 L174,162 L150,162 Z"
+          fill="#F4F4F6"/>
+    <!-- Éclair / pointe bleue (accent) -->
+    <path d="M150,90 L186,82 L160,98 Z" fill="#1B4FD6"/>
+  </g>
+</svg>
