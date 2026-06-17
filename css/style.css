@@ -338,6 +338,11 @@ body::before {
 .partner__name { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; }
 .partner__role { font-size: 0.85rem; color: var(--muted); }
 
+.partners__track { align-items: stretch; }
+.partner--spotify { min-width: 340px; gap: 12px; }
+.partner--spotify:hover { transform: none; }
+.partner__embed { display: block; width: 100%; border: 0; border-radius: 12px; margin-top: auto; }
+
 /* ============================================================
    À PROPOS
    ============================================================ */
