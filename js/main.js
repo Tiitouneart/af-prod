@@ -195,7 +195,7 @@
   /* ---------- Scroll horizontal des réalisations ---------- */
   const workTrack = document.getElementById('workTrack');
   const workSticky = document.querySelector('.work__sticky');
-  if (workTrack && workSticky && !isTouch) {
+  if (workTrack && workSticky) {
     const workSection = document.querySelector('.work');
     const setHeight = () => {
       const extra = workTrack.scrollWidth - window.innerWidth;

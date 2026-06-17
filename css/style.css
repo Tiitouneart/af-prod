@@ -526,10 +526,11 @@ body::before {
   .services__grid, .offers__grid, .process__steps, .footer__grid { grid-template-columns: 1fr; }
   .hero__meta { gap: 24px; }
   .footer__tagline { text-align: left; }
-  .work-card { flex-basis: 80vw; }
-  .work__sticky { position: relative; }
-  .work__track { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; -webkit-overflow-scrolling: touch; }
-  .work-card { scroll-snap-align: center; }
+  /* Mobile : on garde l'effet de scroll horizontal (JS), mais les cartes
+     remplissent l'écran pour éviter le vide au-dessus/en-dessous. */
+  .work__sticky { padding: 20px 0; }
+  .work__head { margin-bottom: 20px; }
+  .work-card { flex-basis: 80vw; height: clamp(320px, calc(100svh - 200px), 560px); }
 }
 
 /* ============================================================
