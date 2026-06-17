@@ -1,0 +1,24 @@
+# AF Prod — site statique servi par nginx, derrière Nginx Proxy Manager.
+# Même modèle que moneylfx / mod-amdi-re : conteneur nginx:alpine, aucun port
+# exposé (NPM route via le réseau colofils_internal et gère le HTTPS).
+#
+#   Déploiement :   cd /var/www/afprod/deploy && docker compose up -d
+#   Mise à jour :   git pull && docker compose restart   (les fichiers sont montés en RO)
+
+services:
+  afprod:
+    image: nginx:alpine
+    container_name: afprod
+    restart: unless-stopped
+    networks:
+      - colofils_internal
+    volumes:
+      # Le site (monté en lecture seule)
+      - /var/www/afprod:/usr/share/nginx/html:ro
+      # La config nginx custom (headers de sécurité + CSP web3forms + cache)
+      - /var/www/afprod/deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /var/www/afprod/deploy/security-headers.conf:/etc/nginx/snippets/security-headers.conf:ro
+
+networks:
+  colofils_internal:
+    external: true

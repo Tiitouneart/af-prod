@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://af-prod.fr/sitemap.xml
+Sitemap: https://af-prod.re/sitemap.xml
