@@ -341,7 +341,7 @@ body::before {
 .partners__track { align-items: stretch; }
 .partner--spotify { min-width: 340px; gap: 12px; }
 .partner--spotify:hover { transform: none; }
-.partner__embed { display: block; width: 100%; border: 0; border-radius: 12px; margin-top: auto; }
+.partner__embed { display: block; width: 100%; border: 0; border-radius: 12px; margin-top: auto; min-height: 152px; background: #181818; }
 
 /* ============================================================
    À PROPOS

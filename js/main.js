@@ -218,6 +218,21 @@
     onScrollWork();
   }
 
+  /* ---------- Lazy-load des players Spotify (chargement à la vue) ---------- */
+  const spotifyFrames = document.querySelectorAll('iframe[data-src]');
+  if (spotifyFrames.length) {
+    const marquee = document.querySelector('.partners__marquee') || document.getElementById('partners');
+    const loadAll = () => spotifyFrames.forEach((f) => { if (!f.src) f.src = f.dataset.src; });
+    if ('IntersectionObserver' in window && marquee) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach((e) => { if (e.isIntersecting) { loadAll(); obs.disconnect(); } });
+      }, { rootMargin: '200px 0px' });
+      io.observe(marquee);
+    } else {
+      loadAll();
+    }
+  }
+
   /* ---------- Validation formulaire ---------- */
   const form = document.getElementById('contactForm');
   if (form) {
