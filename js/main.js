@@ -222,12 +222,21 @@
   const spotifyFrames = document.querySelectorAll('iframe[data-src]');
   if (spotifyFrames.length) {
     const marquee = document.querySelector('.partners__marquee') || document.getElementById('partners');
-    const loadAll = () => spotifyFrames.forEach((f) => { if (!f.src) f.src = f.dataset.src; });
+    // On teste l'ATTRIBUT data-src (et pas la propriété .src, qui vaut
+    // "about:blank" — donc truthy — tant qu'aucune source n'est posée).
+    const loadAll = () => spotifyFrames.forEach((f) => {
+      const url = f.getAttribute('data-src');
+      if (url) { f.setAttribute('src', url); f.removeAttribute('data-src'); }
+    });
     if ('IntersectionObserver' in window && marquee) {
       const io = new IntersectionObserver((entries, obs) => {
         entries.forEach((e) => { if (e.isIntersecting) { loadAll(); obs.disconnect(); } });
       }, { rootMargin: '200px 0px' });
       io.observe(marquee);
+      // Filet de sécurité : si l'observer ne se déclenche jamais
+      // (marquee déjà visible au chargement sur certains navigateurs, etc.),
+      // on charge quand même après un court délai.
+      setTimeout(loadAll, 1500);
     } else {
       loadAll();
     }
