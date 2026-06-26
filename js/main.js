@@ -195,7 +195,7 @@
   /* ---------- Scroll horizontal des réalisations ---------- */
   const workTrack = document.getElementById('workTrack');
   const workSticky = document.querySelector('.work__sticky');
-  if (workTrack && workSticky && !isTouch) {
+  if (workTrack && workSticky) {
     const workSection = document.querySelector('.work');
     const setHeight = () => {
       const extra = workTrack.scrollWidth - window.innerWidth;
@@ -216,6 +216,21 @@
     };
     window.addEventListener('scroll', onScrollWork, { passive: true });
     onScrollWork();
+  }
+
+  /* ---------- Lazy-load des players Spotify (chargement à la vue) ---------- */
+  const spotifyFrames = document.querySelectorAll('iframe[data-src]');
+  if (spotifyFrames.length) {
+    const marquee = document.querySelector('.partners__marquee') || document.getElementById('partners');
+    const loadAll = () => spotifyFrames.forEach((f) => { if (!f.src) f.src = f.dataset.src; });
+    if ('IntersectionObserver' in window && marquee) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach((e) => { if (e.isIntersecting) { loadAll(); obs.disconnect(); } });
+      }, { rootMargin: '200px 0px' });
+      io.observe(marquee);
+    } else {
+      loadAll();
+    }
   }
 
   /* ---------- Validation formulaire ---------- */
